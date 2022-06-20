@@ -1,2 +1,11 @@
-package pages;public class citiesPage {
+package pages;
+
+import org.openqa.selenium.WebDriver;
+
+public class CitiesPage {
+    private WebDriver driver;
+
+    public CitiesPage(WebDriver driver) {
+        this.driver = driver;
+    }
 }
