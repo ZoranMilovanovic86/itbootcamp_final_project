@@ -11,13 +11,12 @@ import java.time.Duration;
 
 
 public class BasicTest {
-    protected WebDriver driver = new ChromeDriver();
+    protected WebDriver driver;
     protected LoginPage loginPage;
     protected CitiesPage citiesPage;
     protected NavPage navPage;
     protected SignupPage signupPage;
     protected MessagePopUpPage messagePopUpPage;
-
 
     protected String baseUrl = "https://vue-demo.daniel-avellaneda.com";
 
