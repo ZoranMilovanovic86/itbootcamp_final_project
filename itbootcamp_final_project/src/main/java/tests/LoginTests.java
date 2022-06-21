@@ -52,5 +52,19 @@ public class LoginTests extends BasicTest {
                 "Current site path do not contains /login in URL");
     }
 
-
+    @Test(priority = 50)
+    public void verifyLogin() {
+        String email = "admin@admin.com";
+        String password = "12345";
+        navPage.getLoginButton().click();
+        loginPage.getEmailInputField().sendKeys(email);
+        loginPage.getPasswordInputField().sendKeys(password);
+        loginPage.getLoginButton().click();
+        loginPage.waitForTitleToChange();
+        Assert.assertTrue(driver.getCurrentUrl().contains("/home"),
+                "Current site path do not contains /home in URL");
+    }
 }
+
+
+
