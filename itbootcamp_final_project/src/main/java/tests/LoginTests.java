@@ -66,7 +66,7 @@ public class LoginTests extends BasicTest {
     }
 
     @Test(priority = 60)
-    public void veryfyLogout() {
+    public void verifyLogout() {
         Assert.assertTrue(navPage.getLogoutButton().isDisplayed(), "Logout button is not visible on the page");
         navPage.getLogoutButton().click();
     }
