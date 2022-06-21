@@ -18,5 +18,8 @@ public class LoginPage {
     public WebElement getPasswordInputField() {
         return this.driver.findElement(By.id("password"));
     }
+    public WebElement getLoginButton() {
+        return this.driver.findElement(By.className("v-btn--contained"));
+    }
 
 }
