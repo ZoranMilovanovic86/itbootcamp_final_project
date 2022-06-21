@@ -44,4 +44,29 @@ public class SignupTests extends BasicTest {
         Assert.assertTrue(driver.getCurrentUrl().contains("/signup"),
                 "Current site path do not contains /signup in URL");
     }
+
+    @Test
+    public void verifySignup() {
+        String name = "Zoran Milovanovic";
+        String email = "zoran.milovanovic@itbootcamp.rs";
+        String password = "12345";
+        String confirmPassword = "12345";
+
+        navPage.getSignupButton().click();
+        signupPage.getNameInputField().sendKeys(name);
+        signupPage.getEmailInputField().sendKeys(email);
+        signupPage.getPasswordInputField().sendKeys(password);
+        signupPage.getConfirmPasswordInputField().sendKeys(confirmPassword);
+        signupPage.getSignMeUpButton().click();
+        messagePopUpPage.waitSignupVerifyYourAccountDialog();
+        Assert.assertTrue(messagePopUpPage.getVerifyYourAccountDialogMessage().
+                        getText().contains("IMPORTANT: Verify your account"),
+                "Verify your account message is missing");
+        messagePopUpPage.getVerifyYourAccountCloseButton().click();
+        navPage.getLogoutButton().click();
+
+
+    }
+
+
 }
