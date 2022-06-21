@@ -18,6 +18,8 @@ public class LoginTests extends BasicTest {
         navPage.getLoginButton().click();
         Assert.assertEquals(loginPage.getEmailInputField().getAttribute("type"), "email",
                 "Email input field attribute type is not email");
+        Assert.assertEquals(loginPage.getPasswordInputField().getAttribute("type"), "password",
+                "Password input field attribute type is not password");
     }
 
 }
