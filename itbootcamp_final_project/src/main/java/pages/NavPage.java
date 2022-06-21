@@ -19,8 +19,12 @@ public class NavPage {
     public WebElement getLoginButton() {
         return this.driver.findElement(By.linkText("LOGIN"));
     }
+
     public WebElement getLogoutButton() {
         return this.driver.findElement(By.className("btnLogout"));
     }
 
+    public WebElement getSignupButton() {
+        return this.driver.findElement(By.linkText("SIGN UP"));
+    }
 }
