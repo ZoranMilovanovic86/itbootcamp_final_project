@@ -64,7 +64,10 @@ public class LoginTests extends BasicTest {
         Assert.assertTrue(driver.getCurrentUrl().contains("/home"),
                 "Current site path do not contains /home in URL");
     }
+
+    @Test(priority = 60)
+    public void veryfyLogout() {
+        Assert.assertTrue(navPage.getLogoutButton().isDisplayed(), "Logout button is not visible on the page");
+        navPage.getLogoutButton().click();
+    }
 }
-
-
-
