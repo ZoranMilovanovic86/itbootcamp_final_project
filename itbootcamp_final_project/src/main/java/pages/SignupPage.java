@@ -25,5 +25,7 @@ public class SignupPage {
     public WebElement getConfirmPasswordInputField() {
         return this.driver.findElement(By.id("confirmPassword"));
     }
-
+    public WebElement getSignMeUpButton() {
+        return this.driver.findElement(By.className("v-btn--contained"));
+    }
 }

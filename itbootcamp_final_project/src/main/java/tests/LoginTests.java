@@ -31,7 +31,7 @@ public class LoginTests extends BasicTest {
         loginPage.getPasswordInputField().sendKeys(password);
         loginPage.getLoginButton().click();
         messagePopUpPage.waitForMessagePopUpToBeShown();
-        Assert.assertEquals(messagePopUpPage.loginErrorMessaages().getText(), "User does not exists",
+        Assert.assertEquals(messagePopUpPage.loginAndSignupErrorMessages().getText(), "User does not exists",
                 "Error message is not User does not exists");
         Assert.assertTrue(driver.getCurrentUrl().contains("/login"),
                 "Current site path do not contains /login in URL");
@@ -46,7 +46,7 @@ public class LoginTests extends BasicTest {
         loginPage.getPasswordInputField().sendKeys(password);
         loginPage.getLoginButton().click();
         messagePopUpPage.waitForMessagePopUpToBeShown();
-        Assert.assertEquals(messagePopUpPage.loginErrorMessaages().getText(), "Wrong password",
+        Assert.assertEquals(messagePopUpPage.loginAndSignupErrorMessages().getText(), "Wrong password",
                 "Error message is not Wrong password");
         Assert.assertTrue(driver.getCurrentUrl().contains("/login"),
                 "Current site path do not contains /login in URL");

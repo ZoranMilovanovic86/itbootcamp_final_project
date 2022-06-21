@@ -22,7 +22,7 @@ public class MessagePopUpPage {
        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("v-btn__content")));
        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(text(), 'Close')]")));
    }
-   public WebElement loginErrorMessaages() {
+   public WebElement loginAndSignupErrorMessages() {
       return driver.findElement(By.tagName("li"));
    }
 

@@ -22,4 +22,26 @@ public class SignupTests extends BasicTest {
         Assert.assertEquals(signupPage.getConfirmPasswordInputField().getAttribute("type"), "password",
                 "Confirm Password input field attribute type is not password");
     }
+
+    @Test(priority = 30)
+    public void verifyErrorIsDisplayedWhenUserAlreadyExist() {
+        String name = "Another User";
+        String email = "admin@admin.com";
+        String password = "12345";
+        String confirmPassword = "12345";
+
+        navPage.getSignupButton().click();
+        Assert.assertTrue(driver.getCurrentUrl().contains("/signup"),
+                "Current site path do not contains /signup in URL");
+        signupPage.getNameInputField().sendKeys(name);
+        signupPage.getEmailInputField().sendKeys(email);
+        signupPage.getPasswordInputField().sendKeys(password);
+        signupPage.getConfirmPasswordInputField().sendKeys(confirmPassword);
+        signupPage.getSignMeUpButton().click();
+        messagePopUpPage.waitForMessagePopUpToBeShown();
+        Assert.assertEquals(messagePopUpPage.loginAndSignupErrorMessages().getText(), "E-mail already exists",
+                "Error message is not E-mail already exists" );
+        Assert.assertTrue(driver.getCurrentUrl().contains("/signup"),
+                "Current site path do not contains /signup in URL");
+    }
 }
