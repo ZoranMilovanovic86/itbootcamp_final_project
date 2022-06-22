@@ -20,4 +20,14 @@ public class CitiesTests extends BasicTest {
                 "Current site path do not contains /admin/cities in URL");
     }
 
+    @Test(priority = 20)
+    public void verifyInputTypes() {
+        navPage.getAdminButton().click();
+        navPage.getCitiesButton().click();
+        citiesPage.getNewItemButton().click();
+        citiesPage.waitForEditDialogToBeVisible();
+        Assert.assertEquals(citiesPage.getNameInput().getAttribute("type"), "text",
+                "Name input field attribute type is not text");
+    }
+
 }
