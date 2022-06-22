@@ -27,4 +27,12 @@ public class NavPage {
     public WebElement getSignupButton() {
         return this.driver.findElement(By.linkText("SIGN UP"));
     }
+
+    public WebElement getAdminButton() {
+        return this.driver.findElement(By.className("btnAdmin"));
+    }
+
+    public WebElement getCitiesButton() {
+        return this.driver.findElement(By.linkText("Cities"));
+    }
 }
