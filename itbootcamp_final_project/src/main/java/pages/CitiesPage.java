@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
 
 public class CitiesPage {
@@ -15,11 +16,11 @@ public class CitiesPage {
     }
 
     public WebElement getNewItemButton() {
-        return this.driver.findElement(By.className("btnNewItem"));
+        return driver.findElement(By.className("btnNewItem"));
     }
 
     public WebElement getNameInputField() {
-        return this.driver.findElement(By.id("name"));
+        return driver.findElement(By.id("name"));
     }
 
     public void waitForEditDialogToBeVisible() {
@@ -28,7 +29,7 @@ public class CitiesPage {
     }
 
     public WebElement getSaveButton() {
-        return this.driver.findElement(By.className("btnSave"));
+        return driver.findElement(By.className("btnSave"));
     }
 
     public void waitSuccessfullyMessageToBeVisible() {
@@ -39,6 +40,25 @@ public class CitiesPage {
     public WebElement getMessageSuccessfullyText() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("success")));
-        return this.driver.findElement(By.className("success"));
+        return driver.findElement(By.className("success"));
     }
+
+    public WebElement getSearchInputField() {
+        return driver.findElement(By.id("search"));
+    }
+
+    public void waitForRowsToAppear(int rowNum) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.numberOfElementsToBe(By.tagName("tr"), rowNum + 1));
+    }
+
+    public WebElement getEditButton(int rowIndex) {
+        return this.driver.findElements(By.id("edit")).get(rowIndex - 1);
+    }
+
+    public void waitForSaveButtonToBeClicable() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(getSaveButton()));
+    }
+
 }

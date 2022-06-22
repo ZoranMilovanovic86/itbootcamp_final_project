@@ -1,7 +1,11 @@
 package tests;
 
+import org.openqa.selenium.interactions.Action;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class CitiesTests extends BasicTest {
 
@@ -39,6 +43,25 @@ public class CitiesTests extends BasicTest {
         citiesPage.getNewItemButton().click();
         citiesPage.waitForEditDialogToBeVisible();
         citiesPage.getNameInputField().sendKeys(city);
+        citiesPage.getSaveButton().click();
+        citiesPage.waitSuccessfullyMessageToBeVisible();
+        Assert.assertTrue(citiesPage.getMessageSuccessfullyText().getText().contains("Saved successfully"),
+                "Saved successfully message is missing");
+    }
+
+    @Test(priority = 40)
+    public void editCity() {
+        String oldCityName = "Zoran Milovanovic's city";
+        String newCityName = "Zoran Milovanovic's city Edited";
+
+        navPage.getAdminButton().click();
+        navPage.getCitiesButton().click();
+        citiesPage.getSearchInputField().sendKeys(oldCityName);
+        citiesPage.waitForRowsToAppear(1);
+        citiesPage.getEditButton(1).click();
+        citiesPage.getNameInputField().click();
+        new Actions(driver).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(newCityName).perform();
+        citiesPage.waitForSaveButtonToBeClicable();
         citiesPage.getSaveButton().click();
         citiesPage.waitSuccessfullyMessageToBeVisible();
         Assert.assertTrue(citiesPage.getMessageSuccessfullyText().getText().contains("Saved successfully"),
