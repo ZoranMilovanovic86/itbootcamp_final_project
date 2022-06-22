@@ -26,8 +26,23 @@ public class CitiesTests extends BasicTest {
         navPage.getCitiesButton().click();
         citiesPage.getNewItemButton().click();
         citiesPage.waitForEditDialogToBeVisible();
-        Assert.assertEquals(citiesPage.getNameInput().getAttribute("type"), "text",
+        Assert.assertEquals(citiesPage.getNameInputField().getAttribute("type"), "text",
                 "Name input field attribute type is not text");
+    }
+
+    @Test(priority = 30)
+    public void createNewCity() {
+        String city = "Zoran Milovanovic";
+
+        navPage.getAdminButton().click();
+        navPage.getCitiesButton().click();
+        citiesPage.getNewItemButton().click();
+        citiesPage.waitForEditDialogToBeVisible();
+        citiesPage.getNameInputField().sendKeys(city);
+        citiesPage.getSaveButton().click();
+        citiesPage.waitSuccessfullyMessageToBeVisible();
+        Assert.assertTrue(citiesPage.getMessageSuccessfullyText().getText().contains("Saved successfully"),
+                "Saved successfully message is missing");
     }
 
 }
