@@ -11,44 +11,42 @@ import java.time.Duration;
 public class CitiesPage {
     private WebDriver driver;
 
+    private WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
     public CitiesPage(WebDriver driver) {
         this.driver = driver;
     }
 
     public WebElement getNewItemButton() {
-        return driver.findElement(By.className("btnNewItem"));
+        return this.driver.findElement(By.className("btnNewItem"));
     }
 
     public WebElement getNameInputField() {
-        return driver.findElement(By.id("name"));
+        return this.driver.findElement(By.id("name"));
     }
 
     public void waitForEditDialogToBeVisible() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("v-card")));
     }
 
     public WebElement getSaveButton() {
-        return driver.findElement(By.className("btnSave"));
+        return this.driver.findElement(By.className("btnSave"));
     }
 
     public void waitSuccessfullyMessageToBeVisible() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("success")));
     }
 
     public WebElement getMessageSuccessfullyText() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("success")));
-        return driver.findElement(By.className("success"));
+        return this.driver.findElement(By.className("success"));
     }
 
     public WebElement getSearchInputField() {
-        return driver.findElement(By.id("search"));
+        return this.driver.findElement(By.id("search"));
     }
 
     public void waitForRowsToAppear(int rowNum) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.numberOfElementsToBe(By.tagName("tr"), rowNum + 1));
     }
 
@@ -57,8 +55,11 @@ public class CitiesPage {
     }
 
     public void waitForSaveButtonToBeClicable() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(getSaveButton()));
+    }
+
+    public WebElement getTableCell(int rowIndex, int columnIndex) {
+        return this.driver.findElement(By.xpath("//tbody/tr[" + rowIndex + "]/td[" + columnIndex + "]"));
     }
 
 }

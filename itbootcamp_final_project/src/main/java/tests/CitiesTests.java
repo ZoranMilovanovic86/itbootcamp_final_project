@@ -68,4 +68,18 @@ public class CitiesTests extends BasicTest {
                 "Saved successfully message is missing");
     }
 
+    @Test(priority = 50)
+    public void searchCity() {
+        String cityName = "Zoran Milovanovic's city Edited";
+
+        navPage.getAdminButton().click();
+        navPage.getCitiesButton().click();
+        citiesPage.getSearchInputField().sendKeys(cityName);
+        citiesPage.waitForRowsToAppear(1);
+        Assert.assertEquals(citiesPage.getTableCell(1, 2).getText(),
+                cityName,
+                "City you searched for is not in database");
+    }
 }
+
+
