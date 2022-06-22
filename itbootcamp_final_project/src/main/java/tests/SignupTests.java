@@ -45,7 +45,7 @@ public class SignupTests extends BasicTest {
                 "Current site path do not contains /signup in URL");
     }
 
-    @Test
+    @Test(priority = 40)
     public void verifySignup() {
         String name = "Zoran Milovanovic";
         String email = "zoran.milovanovic@itbootcamp.rs";
@@ -64,7 +64,6 @@ public class SignupTests extends BasicTest {
                 "Verify your account message is missing");
         messagePopUpPage.getVerifyYourAccountCloseButton().click();
         navPage.getLogoutButton().click();
-
 
     }
 
