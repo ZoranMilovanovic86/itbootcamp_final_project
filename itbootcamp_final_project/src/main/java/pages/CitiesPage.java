@@ -37,7 +37,7 @@ public class CitiesPage {
     }
 
     public WebElement getMessageSuccessfullyText() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("success")));
         return this.driver.findElement(By.className("success"));
     }

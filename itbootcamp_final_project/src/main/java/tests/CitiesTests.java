@@ -32,7 +32,7 @@ public class CitiesTests extends BasicTest {
 
     @Test(priority = 30)
     public void createNewCity() {
-        String city = "Zoran Milovanovic";
+        String city = "Zoran Milovanovic's city";
 
         navPage.getAdminButton().click();
         navPage.getCitiesButton().click();
