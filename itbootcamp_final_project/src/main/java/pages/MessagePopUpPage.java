@@ -12,14 +12,12 @@ import java.time.Duration;
 public class MessagePopUpPage {
     private WebDriver driver;
 
-    private WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-
     public MessagePopUpPage(WebDriver driver) {
         this.driver = driver;
     }
 
     public void waitForMessagePopUpToBeShown() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(), 'Close')]")));
     }
 
@@ -28,6 +26,7 @@ public class MessagePopUpPage {
     }
 
     public void waitSignupVerifyYourAccountDialog() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(By.className("btnClose")));
     }
 

@@ -1,11 +1,9 @@
 package tests;
 
-import org.openqa.selenium.interactions.Action;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class CitiesTests extends BasicTest {
 
@@ -29,7 +27,7 @@ public class CitiesTests extends BasicTest {
         navPage.getAdminButton().click();
         navPage.getCitiesButton().click();
         citiesPage.getNewItemButton().click();
-        citiesPage.waitForEditDialogToBeVisible();
+        citiesPage.waitForDialogueToBeVisible();
         Assert.assertEquals(citiesPage.getNameInputField().getAttribute("type"), "text",
                 "Name input field attribute type is not text");
     }
@@ -41,7 +39,7 @@ public class CitiesTests extends BasicTest {
         navPage.getAdminButton().click();
         navPage.getCitiesButton().click();
         citiesPage.getNewItemButton().click();
-        citiesPage.waitForEditDialogToBeVisible();
+        citiesPage.waitForDialogueToBeVisible();
         citiesPage.getNameInputField().sendKeys(city);
         citiesPage.getSaveButton().click();
         citiesPage.waitSuccessfullyMessageToBeVisible();
@@ -76,10 +74,28 @@ public class CitiesTests extends BasicTest {
         navPage.getCitiesButton().click();
         citiesPage.getSearchInputField().sendKeys(cityName);
         citiesPage.waitForRowsToAppear(1);
-        Assert.assertEquals(citiesPage.getTableCell(1, 2).getText(),
-                cityName,
+        Assert.assertEquals(citiesPage.getTableCell(1, 2).getText(), cityName,
                 "City you searched for is not in database");
     }
+
+    @Test(priority = 60)
+    public void deleteCity() {
+        String cityName = "Zoran Milovanovic's city Edited";
+
+        navPage.getAdminButton().click();
+        navPage.getCitiesButton().click();
+        citiesPage.getSearchInputField().sendKeys(cityName);
+        citiesPage.waitForRowsToAppear(1);
+        Assert.assertEquals(citiesPage.getTableCell(1, 2).getText(), cityName,
+                "City you searched for is not in database");
+        citiesPage.getDeleteButtonFromRow(1).click();
+        citiesPage.waitForDialogueToBeVisible();
+        citiesPage.getDeleteButtonFromDialogue().click();
+        citiesPage.waitSuccessfullyMessageToBeVisible();
+        Assert.assertTrue(citiesPage.getMessageSuccessfullyText().getText().contains("Deleted successfully"),
+                "Deleted successfully message is missing");
+    }
+
 }
 
 

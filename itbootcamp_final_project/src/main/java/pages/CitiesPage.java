@@ -11,8 +11,6 @@ import java.time.Duration;
 public class CitiesPage {
     private WebDriver driver;
 
-    private WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
     public CitiesPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -25,7 +23,8 @@ public class CitiesPage {
         return this.driver.findElement(By.id("name"));
     }
 
-    public void waitForEditDialogToBeVisible() {
+    public void waitForDialogueToBeVisible() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("v-card")));
     }
 
@@ -34,10 +33,12 @@ public class CitiesPage {
     }
 
     public void waitSuccessfullyMessageToBeVisible() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("success")));
     }
 
     public WebElement getMessageSuccessfullyText() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("success")));
         return this.driver.findElement(By.className("success"));
     }
@@ -47,6 +48,7 @@ public class CitiesPage {
     }
 
     public void waitForRowsToAppear(int rowNum) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.numberOfElementsToBe(By.tagName("tr"), rowNum + 1));
     }
 
@@ -55,11 +57,20 @@ public class CitiesPage {
     }
 
     public void waitForSaveButtonToBeClicable() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(getSaveButton()));
     }
 
     public WebElement getTableCell(int rowIndex, int columnIndex) {
         return this.driver.findElement(By.xpath("//tbody/tr[" + rowIndex + "]/td[" + columnIndex + "]"));
+    }
+
+    public WebElement getDeleteButtonFromRow(int rowIndex) {
+        return this.driver.findElements(By.id("delete")).get(rowIndex - 1);
+    }
+
+    public WebElement getDeleteButtonFromDialogue() {
+        return this.driver.findElement(By.xpath("//div[contains(@class,'v-card__actions')]/button[2]"));
     }
 
 }
