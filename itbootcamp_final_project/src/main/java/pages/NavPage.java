@@ -20,7 +20,7 @@ public class NavPage {
     }
 
     public WebElement getLanguageButtonEN() {
-        return this.driver.findElement(By.id("btnEN"));
+        return this.driver.findElement(By.className("btnEN"));
     }
 
     public WebElement getLanguageButtonES() {
