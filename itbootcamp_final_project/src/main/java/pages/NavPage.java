@@ -40,7 +40,7 @@ public class NavPage {
         return this.driver.findElement(By.linkText("Cities"));
     }
 
-    public void getHomeLink() {
+    public void goToHomeUrl() {
         this.driver.navigate().to(driver.getCurrentUrl() + "home");
     }
 
@@ -49,13 +49,13 @@ public class NavPage {
         wait.until(ExpectedConditions.urlContains("/login"));
     }
 
-    public void getProfileLink() {
+    public void goToProfileUrl() {
         this.driver.get(driver.getCurrentUrl() + "profile");
     }
 
-    public void waitForProfilePageToLoadUp() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.urlContains("/login"));
+    public void goToAdminCitiesUrl() {
+        this.driver.get(driver.getCurrentUrl() + "admin/cities");
     }
+
 
 }

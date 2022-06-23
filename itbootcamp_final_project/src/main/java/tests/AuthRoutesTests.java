@@ -7,7 +7,7 @@ public class AuthRoutesTests extends BasicTest {
 
     @Test(priority = 10)
     public void ForbidsVisitsToHomeUrlIfNotAuthenticated() {
-        navPage.getHomeLink();
+        navPage.goToHomeUrl();
         navPage.waitForLoginPageToLoadUp();
         Assert.assertTrue(this.driver.getCurrentUrl().contains("/login"),
                 "Current site path do not contains /login in URL");
@@ -15,8 +15,16 @@ public class AuthRoutesTests extends BasicTest {
 
     @Test(priority = 20)
     public void forbidsVisitsToProfileUrlIfNotAuthenticated() {
-        navPage.getProfileLink();
-        navPage.waitForProfilePageToLoadUp();
+        navPage.goToProfileUrl();
+        navPage.waitForLoginPageToLoadUp();
+        Assert.assertTrue(this.driver.getCurrentUrl().contains("/login"),
+                "Current site path do not contains /login in URL");
+    }
+
+    @Test(priority = 30)
+    public void forbidsVisitsToAdminCitiesUrlIfNotAuthenticated() {
+        navPage.goToAdminCitiesUrl();
+        navPage.waitForLoginPageToLoadUp();
         Assert.assertTrue(this.driver.getCurrentUrl().contains("/login"),
                 "Current site path do not contains /login in URL");
     }
