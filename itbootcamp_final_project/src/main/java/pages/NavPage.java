@@ -57,5 +57,8 @@ public class NavPage {
         this.driver.get(driver.getCurrentUrl() + "admin/cities");
     }
 
+    public void goToAdminUsersUrl() {
+        this.driver.get(driver.getCurrentUrl() + "admin/users");
+    }
 
 }

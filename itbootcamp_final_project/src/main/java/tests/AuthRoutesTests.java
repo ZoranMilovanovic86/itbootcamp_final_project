@@ -29,4 +29,12 @@ public class AuthRoutesTests extends BasicTest {
                 "Current site path do not contains /login in URL");
     }
 
+    @Test(priority = 40)
+    public void forbidsVisitsToAdminUsersUrlIfNotAuthenticated() {
+        navPage.goToAdminUsersUrl();
+        navPage.waitForLoginPageToLoadUp();
+        Assert.assertTrue(this.driver.getCurrentUrl().contains("/login"),
+                "Current site path do not contains /login in URL");
+    }
+
 }
