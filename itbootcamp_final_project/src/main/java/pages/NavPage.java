@@ -49,4 +49,13 @@ public class NavPage {
         wait.until(ExpectedConditions.urlContains("/login"));
     }
 
+    public void getProfileLink() {
+        this.driver.get(driver.getCurrentUrl() + "profile");
+    }
+
+    public void waitForProfilePageToLoadUp() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.urlContains("/login"));
+    }
+
 }
