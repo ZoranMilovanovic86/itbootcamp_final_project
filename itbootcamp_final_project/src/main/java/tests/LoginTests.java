@@ -7,6 +7,7 @@ public class LoginTests extends BasicTest {
 
     @Test(priority = 10)
     public void visitLoginPage() {
+        navPage.getLanguageButton().click();
         navPage.getLanguageButtonEN().click();
         navPage.getLoginButton().click();
         Assert.assertTrue(driver.getCurrentUrl().contains("/login"),
